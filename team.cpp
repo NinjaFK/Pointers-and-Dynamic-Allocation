@@ -30,6 +30,7 @@ string Player::getPositionString(Position pos)
 Player::Player(string name, int number, Position pos)
 	: position(pos)
 {
+	playerCount++;
 	this->name = name;
 	this->number = number;
 }
@@ -46,14 +47,12 @@ void Team::printTeam()
 	cout << endl;
 }
 
-/**/
+/*	Reads a team from a given file. The file will always be formatted such that
+	the first line contains the team name. The next nine lines will contain the nine players, with the number first
+	Followed by their name. The order of players in files is always:
+	Catcher, Pitcher, First, Second, Shortstop, Third, Right Field, Center Field, Left Field*/
 Team::Team(ifstream &file)
 {
-	// Reads a team from a given file. The file will always be formatted such that
-	// the first line contains the team name. The next nine lines will contain the nine players, with the number first
-	// Followed by their name. The order of players in files is always:
-	// Catcher, Pitcher, First, Second, Shortstop, Third, Right Field, Center Field, Left Field
-
 	// HINT: When reading and creating the players, you can either make nine Player objects in order with the
 	// positions listed above, or use a for loop and cast the enumeration type.
 
@@ -66,6 +65,7 @@ Team::Team(ifstream &file)
 	int number;
 	// Read team name first (Remember, the name can have spaces. Try to avoid using >>)
 
+	getline(file, teamName);
 	// TODO
 
 	// Get the catcher (You can replace this if you know how to do the for loop method)
