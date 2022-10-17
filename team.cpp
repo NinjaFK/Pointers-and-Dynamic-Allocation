@@ -69,10 +69,9 @@ Team::Team(ifstream &file)
 	teamCount++;
 }
 
-/**/
+/*Goes through the roster and deletes each player*/
 Team::~Team()
 {
-	// Go through and deallocate all of the Players on the Team
-	// Since the roster array itself is static, there is no need to delete the array, just the stuff in it
-	// This should be about 2 lines of code
+	for (int i = 0; i < TEAM_SIZE; i++)
+		delete roster[i];
 }
