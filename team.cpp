@@ -1,3 +1,9 @@
+/*
+	Name: Brian, 5008139573, 1005, 4
+	Description: Pointers and Dynamic Allocation
+	Input: Files of players and a team anme
+	Output: array of teams of an array of players
+*/
 #include "team.h"
 #include <string>
 #include <fstream>
@@ -8,9 +14,6 @@ using namespace std;
 // Static intializers for counts (done outside class bodies)
 int Player::playerCount = 0;
 int Team::teamCount = 0;
-
-/*----------------- Player function implementations -----------------*/
-
 /* Returns all of the Player's variable members in a formatted string for displaying */
 string Player::toString()
 {
@@ -18,23 +21,20 @@ string Player::toString()
 		   (position == Position::PITCHER || position == Position::CATCHER ? "  " : " ") +
 		   to_string(number) + (number < 10 ? " " : "") + " : " + name;
 }
-
 /* Returns the string corresponding to the given postion */
 string Player::getPositionString(Position pos)
 {
-	return positionNames[(int)pos];
+	return positionNames[static_cast<int>(pos)];
 }
-
 /*Set the Player's member variables to the corresponding parameters.
   Recall how to resolve ambiguity between the same names.*/
 Player::Player(string name, int number, Position pos)
 	: position(pos)
 {
+	playerCount++;
 	this->name = name;
 	this->number = number;
 }
-
-/*----------------- Team function implementations -----------------*/
 /* Prints the team's name and then all of the Players */
 void Team::printTeam()
 {
@@ -45,7 +45,6 @@ void Team::printTeam()
 		cout << roster[i]->toString() << endl;
 	cout << endl;
 }
-
 /*	Reads a team from a given file. The file will always be formatted
 	such that the first line contains the team name. The next nine lines
 	will contain the nine players, with the number first.
@@ -68,7 +67,6 @@ Team::Team(ifstream &file)
 	// Finally increment the count of teams
 	teamCount++;
 }
-
 /*Goes through the roster and deletes each player*/
 Team::~Team()
 {
