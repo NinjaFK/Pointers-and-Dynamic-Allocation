@@ -31,6 +31,10 @@ void League::addTeam(Team *new_team)
 		{
 			tmp[i] = teams[i];
 		}
+		for (int i = 0; i < count; i++)
+		{
+			delete teams[i];
+		}
 		delete teams;
 		teams = new Team *[size + RESIZE_AMOUNT];
 		teams = tmp;
