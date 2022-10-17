@@ -19,6 +19,7 @@ void League::addTeam(Team *new_team)
 	// If the array is unallocated, allocate it
 	if (teams == nullptr)
 	{
+		delete[] teams;
 		teams = new Team *[RESIZE_AMOUNT];
 		size = 4;
 	}
@@ -31,11 +32,7 @@ void League::addTeam(Team *new_team)
 		{
 			tmp[i] = teams[i];
 		}
-		for (int i = 0; i < count; i++)
-		{
-			delete teams[i];
-		}
-		delete teams;
+		delete[] teams;
 		teams = new Team *[size + RESIZE_AMOUNT];
 		teams = tmp;
 		tmp = nullptr;
