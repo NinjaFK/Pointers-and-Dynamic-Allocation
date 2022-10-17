@@ -62,7 +62,7 @@ Team::Team(ifstream &file)
 	{
 		file >> number;
 		getline(file, name);
-		roster[i] = new Player(name, number, Position(i));
+		roster[i] = new Player(name, number, static_cast<Position>(i));
 	}
 	// Finally increment the count of teams
 	teamCount++;
